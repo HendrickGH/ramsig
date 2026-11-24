@@ -60,7 +60,7 @@ export function SectorsGrid({
         </div>
 
         <Surface
-          level="accent-subtle"
+          level={0}
           radius="md"
           className="extended-sectors-banner"
         >

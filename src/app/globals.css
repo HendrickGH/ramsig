@@ -518,6 +518,16 @@ footer[id] {
   color: var(--ink-primary);
 }
 
+.surface-2 .btn--secondary {
+  background-color: var(--surface-3);
+  color: var(--ink-primary);
+}
+
+.surface-2 .btn--secondary:hover:not(:disabled) {
+  background-color: var(--accent-gold-muted);
+  color: var(--ink-primary);
+}
+
 .btn--inverse {
   background-color: var(--surface-inverse);
   color: var(--ink-inverse);
@@ -1593,7 +1603,7 @@ footer[id] {
   gap: 0.85rem;
   padding: 1rem;
   border-radius: var(--radius-sm);
-  background-color: var(--surface-2);
+  background-color: var(--surface-1);
 }
 
 .dossier-confirmation__row {
@@ -1812,6 +1822,16 @@ footer[id] {
   .form-grid-2,
   .dossier-confirmation__summary {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .service-tabs,
+  .form-tabs {
+    border-radius: var(--radius-md);
+  }
+
+  .service-tabs .service-tab,
+  .form-tabs .form-tab {
+    border-radius: var(--radius-sm);
   }
 }
 

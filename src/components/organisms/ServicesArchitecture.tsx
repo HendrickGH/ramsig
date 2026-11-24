@@ -64,7 +64,11 @@ export function ServicesArchitecture({
                   type="button"
                   role="tab"
                   aria-selected={isSelected}
-                  aria-controls={`service-panel-${service.id}`}
+                  aria-controls={
+                    isSelected && activeService
+                      ? `service-panel-${activeService.id}`
+                      : undefined
+                  }
                   className={[
                     "service-tab",
                     isSelected ? "service-tab--active" : "",

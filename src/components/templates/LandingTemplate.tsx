@@ -75,6 +75,7 @@ export function LandingTemplate({
   const [selectedService, setSelectedService] = useState<ServiceId>("guardias");
   const [selectedSector, setSelectedSector] = useState<SectorId>("industria");
   const [selectionVersion, setSelectionVersion] = useState(0);
+  const [requestedTabVersion, setRequestedTabVersion] = useState(0);
   const [privacyOpen, setPrivacyOpen] = useState(false);
 
   const scrollToContact = () => {
@@ -93,7 +94,7 @@ export function LandingTemplate({
   };
 
   const handleRequestQuote = () => {
-    setSelectionVersion((prev) => prev + 1);
+    setRequestedTabVersion((prev) => prev + 1);
     scrollToContact();
   };
 
@@ -160,6 +161,7 @@ export function LandingTemplate({
           preselectedService={selectedService}
           preselectedSector={selectedSector}
           selectionVersion={selectionVersion}
+          requestedTabVersion={requestedTabVersion}
           onOpenPrivacy={() => setPrivacyOpen(true)}
         />
       </main>

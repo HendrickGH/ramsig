@@ -1,27 +1,10 @@
 import {
   ServiceBadge as PrimitiveServiceBadge,
-  type ServiceBadgeProps as PrimitiveServiceBadgeProps,
+  type ServiceBadgeProps,
 } from "@/design-system/Primitives";
-import type { TacticalIconName } from "@/design-system/tokens";
-import { TacticalIcon } from "./TacticalIcon";
 
-export interface AtomicServiceBadgeProps extends PrimitiveServiceBadgeProps {
-  iconName?: TacticalIconName;
-}
+export type AtomicServiceBadgeProps = ServiceBadgeProps;
 
-export function ServiceBadge({
-  iconName,
-  className,
-  ...props
-}: AtomicServiceBadgeProps) {
-  const wrapperClasses = ["service-badge-group", className]
-    .filter(Boolean)
-    .join(" ");
-
-  return (
-    <span className={wrapperClasses}>
-      {iconName ? <TacticalIcon name={iconName} size={14} /> : null}
-      <PrimitiveServiceBadge {...props} />
-    </span>
-  );
+export function ServiceBadge(props: AtomicServiceBadgeProps) {
+  return <PrimitiveServiceBadge {...props} />;
 }

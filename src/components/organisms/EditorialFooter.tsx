@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Surface } from "@/design-system/Primitives";
 import type {
   ContactInfo,
@@ -51,13 +51,13 @@ export function EditorialFooter({
     }
   };
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     if (onClosePrivacy) {
       onClosePrivacy();
     } else {
       setInternalOpen(false);
     }
-  };
+  }, [onClosePrivacy]);
 
   useEffect(() => {
     if (!isModalOpen) {
@@ -74,7 +74,7 @@ export function EditorialFooter({
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  });
+  }, [isModalOpen, handleClose]);
 
   return (
     <Surface as="footer" level={0} className="site-footer">
@@ -177,7 +177,6 @@ export function EditorialFooter({
             role="dialog"
             aria-modal="true"
             aria-labelledby="privacy-modal-title"
-            aria-label={A11Y_COPY.privacyDialogAriaLabel}
             className="privacy-modal"
           >
             <div className="privacy-modal__header">

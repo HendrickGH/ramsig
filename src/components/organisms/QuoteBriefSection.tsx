@@ -61,6 +61,7 @@ export interface QuoteBriefSectionProps {
   preselectedService?: ServiceId;
   preselectedSector?: SectorId;
   selectionVersion?: number;
+  requestedTabVersion?: number;
   onOpenPrivacy?: () => void;
 }
 
@@ -75,6 +76,7 @@ export function QuoteBriefSection({
   preselectedService,
   preselectedSector,
   selectionVersion = 0,
+  requestedTabVersion = 0,
   onOpenPrivacy,
 }: QuoteBriefSectionProps) {
   const [activeTab, setActiveTab] = useState<BriefTab>("quote");
@@ -90,7 +92,7 @@ export function QuoteBriefSection({
     phone: "",
     service: preselectedService ?? quoteConfig.fields.service.options[0]?.value ?? "guardias",
     sector: preselectedSector ?? quoteConfig.fields.sector.options[0]?.value ?? "industria",
-    state: quoteConfig.fields.state.options[0]?.value ?? "Estado de México",
+    state: quoteConfig.fields.state.options[0]?.value ?? "",
     details: "",
     privacyConsent: false,
   });
@@ -105,11 +107,9 @@ export function QuoteBriefSection({
       email: "",
       phone: "",
       position:
-        recruitmentConfig.fields.position.options[0]?.value ??
-        "Guardia Intramuros",
+        recruitmentConfig.fields.position.options[0]?.value ?? "",
       office:
-        recruitmentConfig.fields.office.options[0]?.value ??
-        "Estado de México (Naucalpan)",
+        recruitmentConfig.fields.office.options[0]?.value ?? "",
       experience: "",
       privacyConsent: false,
     });
@@ -133,6 +133,18 @@ export function QuoteBriefSection({
       sector: preselectedSector ?? prev.sector,
     }));
   }, [preselectedService, preselectedSector, selectionVersion]);
+
+  useEffect(() => {
+    if (requestedTabVersion <= 0) {
+      return;
+    }
+
+    setActiveTab("quote");
+    setSubmittedDossier((prev) =>
+      prev?.kind === "recruitment" ? null : prev
+    );
+    setShowPrefillNotice(false);
+  }, [requestedTabVersion]);
 
   const handleTabSwitch = (tab: BriefTab) => {
     setActiveTab(tab);
@@ -319,7 +331,7 @@ export function QuoteBriefSection({
         </div>
 
         <div className="capsule-grid-asymmetric">
-          <Surface level={1} radius="md" className="quote-form-panel">
+          <Surface level={0} radius="md" className="quote-form-panel">
             <Surface
               level={2}
               radius="pill"
@@ -332,7 +344,11 @@ export function QuoteBriefSection({
                 type="button"
                 role="tab"
                 aria-selected={isQuoteActive}
-                aria-controls="brief-panel-quote"
+                aria-controls={
+                  !submittedDossier && isQuoteActive
+                    ? "brief-panel-quote"
+                    : undefined
+                }
                 className={[
                   "form-tab",
                   isQuoteActive ? "form-tab--active" : "",
@@ -348,7 +364,11 @@ export function QuoteBriefSection({
                 type="button"
                 role="tab"
                 aria-selected={!isQuoteActive}
-                aria-controls="brief-panel-recruitment"
+                aria-controls={
+                  !submittedDossier && !isQuoteActive
+                    ? "brief-panel-recruitment"
+                    : undefined
+                }
                 className={[
                   "form-tab",
                   !isQuoteActive ? "form-tab--active" : "",
@@ -363,7 +383,7 @@ export function QuoteBriefSection({
 
             {submittedDossier ? (
               <Surface
-                level={0}
+                level={2}
                 radius="md"
                 role="status"
                 aria-live="polite"
