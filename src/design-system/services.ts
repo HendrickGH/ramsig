@@ -650,3 +650,93 @@ export const FOOTER_COPY = {
   contactTitle: "Contacto Corporativo",
   privacyButtonLabel: "Aviso de Privacidad",
 } as const;
+
+export const SITE_METADATA = {
+  title: "RAMSIG Seguridad Privada | Guardias, Monitoreo 24/7 y Custodias en México",
+  description:
+    "Seguridad privada corporativa B2B en México: guardias intramuros, centro de monitoreo 24/7 y custodias de mercancía para industria, obras de construcción y parques logísticos.",
+  siteName: "RAMSIG Seguridad Privada",
+  locale: "es_MX",
+  canonicalUrl: "https://www.ramsigseguridad.com",
+  keywords: [
+    "seguridad privada",
+    "guardias intramuros",
+    "monitoreo 24/7",
+    "custodias de mercancía",
+    "seguridad industrial",
+    "seguridad para obras de construcción",
+    "parques logísticos",
+    "RAMSIG Seguridad Privada",
+  ],
+  jsonLd: {
+    serviceTypes: [
+      "Guardias Intramuros",
+      "Monitoreo 24/7",
+      "Custodias de Mercancía",
+    ],
+    areaServed: [
+      "Estado de México",
+      "Ciudad de México",
+      "Querétaro",
+      "Jalisco",
+      "Baja California Sur",
+    ],
+    addressLocality: "Naucalpan de Juárez",
+    addressRegion: "Estado de México",
+    addressCountry: "MX",
+  },
+} as const;
+
+export const A11Y_COPY = {
+  skipToContentLabel: "Saltar al contenido principal",
+  mainLandmarkId: "contenido-principal",
+  brandHref: "#inicio",
+  brandAriaLabel: "RAMSIG Seguridad Privada — Ir al inicio",
+  mobileDrawerAriaLabel: "Menú de navegación móvil",
+  servicesTablistAriaLabel: "Pilares operativos RAMSIG",
+  servicesCapabilitiesHeading: "Capacidades operativas",
+  servicesDossierEyebrow: "DESPLIEGUE ACTIVO",
+  servicesModalitiesDescription:
+    "Tres esquemas de custodia carretera y urbana coordinados desde nuestro centro de control para proteger carga, operadores y unidades.",
+  sectorsRecommendedLabel: "Servicios recomendados",
+  coverageMetricsAriaLabel: "Indicadores de impacto operativo",
+  coverageOfficesAriaLabel: "Sedes operativas regionales",
+  coverageComplianceAriaLabel: "Marco regulatorio y cumplimiento",
+  footerNavAriaLabel: "Navegación secundaria",
+  footerCoverageHeading: "Cobertura Estatal",
+  privacyEyebrow: "LFPDPPP · PROTECCIÓN DE DATOS",
+  privacyDialogAriaLabel:
+    "Aviso de Privacidad Integral de RAMSIG Seguridad Privada",
+} as const;
+
+export const HERO_DOSSIER = {
+  eyebrow: "CENTRO DE MANDO OPERATIVO",
+  title: "Cobertura táctica unificada en tres líneas de defensa",
+  subtitle:
+    "Supervisión continua, control documental y capacidad de despliegue para operaciones críticas en México.",
+  footerTag: "MATRIZ NAUCALPAN · 5 ENTIDADES",
+} as const;
+
+export const FORM_UI_COPY = {
+  tabsAriaLabel: "Tipo de solicitud",
+  prefillBadgeLabel: "Selección aplicada desde el catálogo operativo",
+  privacyTriggerLabel: "Consultar Aviso de Privacidad",
+  folioLabel: "Folio de referencia",
+  summaryHeading: "Resumen del requerimiento",
+  quoteConfirmationEyebrow: "EXPEDIENTE COMERCIAL",
+  recruitmentConfirmationEyebrow: "EXPEDIENTE DE TALENTO",
+  noDetailsFallback: "Sin observaciones adicionales",
+  summaryLabels: {
+    fullName: "Solicitante",
+    company: "Empresa",
+    email: "Correo",
+    phone: "Teléfono",
+    service: "Servicio",
+    sector: "Sector",
+    state: "Entidad",
+    details: "Requerimiento",
+    position: "Puesto",
+    office: "Sede",
+    experience: "Experiencia",
+  },
+} as const;
