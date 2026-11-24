@@ -1,4 +1,4 @@
-import { SECTORS, SERVICES } from "@/design-system/content";
+import { SERVICES } from "@/design-system/content";
 import { ContactSection } from "../organisms/ContactSection";
 import { EntrySection } from "../organisms/EntrySection";
 import { Hero } from "../organisms/Hero";
@@ -15,7 +15,6 @@ export function LandingTemplate() {
       <main id="principal">
         <Hero />
         <EntrySection id="servicios" title="Servicios" entries={SERVICES} tone="raised" />
-        <EntrySection id="sectores" title="Sectores que protegemos" entries={SECTORS} tone="base" />
         <ContactSection />
       </main>
       <SiteFooter />

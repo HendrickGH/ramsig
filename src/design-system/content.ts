@@ -18,7 +18,6 @@ export const CONTACT = {
 export const HERO = {
   title: "Seguridad privada para industria, obra y logística.",
   lead: "Guardias, monitoreo 24/7 y custodias de mercancía, con cobertura en cinco estados.",
-  cta: "Solicitar cotización",
 } as const;
 
 export interface Entry {
@@ -45,23 +44,5 @@ export const SERVICES: readonly Entry[] = [
     name: "Custodias de mercancía",
     description:
       "Escolta y seguimiento satelital de su carga, con cuenta espejo para su equipo logístico.",
-  },
-];
-
-export const SECTORS: readonly Entry[] = [
-  {
-    id: "industria",
-    name: "Industria",
-    description: "Plantas y naves industriales.",
-  },
-  {
-    id: "construccion",
-    name: "Obras de construcción",
-    description: "Maquinaria, materiales y turnos nocturnos.",
-  },
-  {
-    id: "logistica",
-    name: "Parques logísticos",
-    description: "Patios, andenes y corredores de carga.",
   },
 ];

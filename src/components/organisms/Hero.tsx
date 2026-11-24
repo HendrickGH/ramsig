@@ -1,5 +1,4 @@
 import { HERO } from "@/design-system/content";
-import { Button } from "../atoms/Button";
 import { Heading } from "../atoms/Heading";
 import { Text } from "../atoms/Text";
 
@@ -11,9 +10,6 @@ export function Hero() {
           {HERO.title}
         </Heading>
         <Text>{HERO.lead}</Text>
-        <div className="hero__action">
-          <Button href="#contacto">{HERO.cta}</Button>
-        </div>
       </div>
     </section>
   );
