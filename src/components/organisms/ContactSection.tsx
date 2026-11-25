@@ -1,13 +1,25 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { CONTACT, REQUEST_OPTIONS } from "@/design-system/content";
+import {
+  CONTACT,
+  REQUEST_OPTIONS,
+  type RequestOptionValue,
+} from "@/design-system/content";
 import { Button } from "../atoms/Button";
 import { Heading } from "../atoms/Heading";
 import { Text } from "../atoms/Text";
 import { FormField } from "../molecules/FormField";
 
-export function ContactSection() {
+export interface ContactSectionProps {
+  selectedRequest: RequestOptionValue;
+  onSelectRequest: (value: RequestOptionValue) => void;
+}
+
+export function ContactSection({
+  selectedRequest,
+  onSelectRequest,
+}: ContactSectionProps) {
   const [sent, setSent] = useState(false);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -21,7 +33,7 @@ export function ContactSection() {
         <div className="split__intro">
           <Heading id="contacto-title">Contacto y cotización</Heading>
           <Text>
-            Indique el servicio, sede o perfil operativo que requiere para preparar su propuesta.
+            Indique el servicio, sede o puesto de interés para canalizar su solicitud con el área correspondiente.
           </Text>
 
           <div className="contact-details">
@@ -55,7 +67,11 @@ export function ContactSection() {
             </p>
           ) : null}
 
-          <FormField id="nombre" label="Nombre completo" required autoComplete="name" />
+          <div className="form-row">
+            <FormField id="nombre" label="Nombre" required autoComplete="given-name" />
+            <FormField id="apellido" label="Apellido" required autoComplete="family-name" />
+          </div>
+
           <FormField id="empresa" label="Empresa o razón social" autoComplete="organization" />
 
           <div className="form-row">
@@ -69,7 +85,12 @@ export function ContactSection() {
             <FormField id="telefono" label="Teléfono" type="tel" autoComplete="tel" />
           </div>
 
-          <FormField id="servicio" label="Servicio o solicitud">
+          <FormField
+            id="servicio"
+            label="Servicio o solicitud"
+            value={selectedRequest}
+            onChange={(event) => onSelectRequest(event.target.value as RequestOptionValue)}
+          >
             {REQUEST_OPTIONS.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
@@ -77,7 +98,7 @@ export function ContactSection() {
             ))}
           </FormField>
 
-          <FormField id="mensaje" label="Detalles del requerimiento" multiline />
+          <FormField id="mensaje" label="Mensaje" multiline />
           <Button type="submit">Enviar solicitud</Button>
 
           <details className="privacy-disclosure">

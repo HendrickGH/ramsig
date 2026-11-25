@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ChangeEvent, ReactNode } from "react";
 
 export interface FormFieldProps {
   id: string;
@@ -7,6 +7,8 @@ export interface FormFieldProps {
   multiline?: boolean;
   required?: boolean;
   autoComplete?: string;
+  value?: string;
+  onChange?: (event: ChangeEvent<HTMLSelectElement>) => void;
   children?: ReactNode;
 }
 
@@ -17,6 +19,8 @@ export function FormField({
   multiline = false,
   required = false,
   autoComplete,
+  value,
+  onChange,
   children,
 }: FormFieldProps) {
   return (
@@ -25,7 +29,14 @@ export function FormField({
         {label}
       </label>
       {children ? (
-        <select id={id} name={id} required={required} className="field__control">
+        <select
+          id={id}
+          name={id}
+          required={required}
+          value={value}
+          onChange={onChange}
+          className="field__control"
+        >
           {children}
         </select>
       ) : multiline ? (

@@ -315,6 +315,7 @@ textarea.field__control {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
+  white-space: nowrap;
   font-size: 0.9375rem;
   color: var(--ink-secondary);
   transition: color 160ms ease;
@@ -426,6 +427,46 @@ textarea.field__control {
   }
 }
 
+.split-media {
+  display: grid;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+@media (min-width: 52rem) {
+  .split-media {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4rem;
+  }
+}
+
+.prose-stack {
+  display: grid;
+  gap: 1rem;
+}
+
+.media-frame {
+  overflow: hidden;
+  background-color: var(--surface-2);
+}
+
+.media-frame--card {
+  border-radius: var(--radius-sm);
+  aspect-ratio: 3 / 2;
+  margin-bottom: 0.75rem;
+}
+
+.media-frame--split {
+  border-radius: var(--radius-md);
+  aspect-ratio: 4 / 3;
+}
+
+.media-frame__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .stack {
   display: grid;
   gap: clamp(2rem, 4vw, 3rem);
@@ -475,6 +516,11 @@ textarea.field__control {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 2.5rem;
   }
+
+  .metrics-grid--six {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 3rem 2.5rem;
+  }
 }
 
 .metric {
@@ -491,37 +537,40 @@ textarea.field__control {
   color: var(--accent-gold);
 }
 
-.split-even {
+.states-grid {
   display: grid;
-  gap: 2.5rem;
+  gap: 1rem;
 }
 
-@media (min-width: 52rem) {
-  .split-even {
-    grid-template-columns: 1fr 1.6fr;
-    gap: 4rem;
+@media (min-width: 38rem) {
+  .states-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-.subblock {
+.state-tile {
   display: grid;
-  gap: 1.25rem;
-  align-content: start;
+  gap: 0.25rem;
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--surface-2);
 }
 
-.plain-list {
-  display: grid;
-  gap: 0.75rem;
+.state-tile__name {
+  font-family: var(--font-serif);
+  font-size: 1.375rem;
+  line-height: 1.2;
+  color: var(--ink-primary);
 }
 
-.plain-list__item {
-  font-size: 1rem;
-  color: var(--ink-secondary);
+.careers-lead {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--accent-gold);
 }
 
-.stack-compact {
-  display: grid;
-  gap: 1.5rem;
+.careers-action {
+  margin-top: 0.5rem;
 }
 
 /* Contact */
