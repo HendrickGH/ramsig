@@ -6,6 +6,7 @@ import { EntryItem } from "../molecules/EntryItem";
 export interface EntrySectionProps {
   id: string;
   title: string;
+  titleHighlight?: string;
   summary?: string;
   entries: readonly Entry[];
   tone: "raised" | "base";
@@ -16,6 +17,7 @@ export interface EntrySectionProps {
 export function EntrySection({
   id,
   title,
+  titleHighlight,
   summary,
   entries,
   tone,
@@ -27,7 +29,9 @@ export function EntrySection({
       <section id={id} aria-labelledby={`${id}-title`} className={`band band--${tone}`}>
         <div className="container section-flow">
           <div className="section-head">
-            <Heading id={`${id}-title`}>{title}</Heading>
+            <Heading id={`${id}-title`} highlight={titleHighlight}>
+              {title}
+            </Heading>
             {summary ? <Text>{summary}</Text> : null}
           </div>
           <ul className="grid-3">
@@ -45,7 +49,9 @@ export function EntrySection({
     <section id={id} aria-labelledby={`${id}-title`} className={`band band--${tone}`}>
       <div className="container split">
         <div className="split__intro">
-          <Heading id={`${id}-title`}>{title}</Heading>
+          <Heading id={`${id}-title`} highlight={titleHighlight}>
+            {title}
+          </Heading>
           {summary ? <Text>{summary}</Text> : null}
         </div>
         <ul className="stack">

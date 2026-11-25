@@ -7,7 +7,9 @@ export function AboutSection() {
     <section id="acerca" aria-labelledby="acerca-title" className="band band--raised">
       <div className="container split-media">
         <div className="split__intro">
-          <Heading id="acerca-title">{ABOUT_SECTION.title}</Heading>
+          <Heading id="acerca-title" highlight={ABOUT_SECTION.highlight}>
+            {ABOUT_SECTION.title}
+          </Heading>
           <div className="prose-stack">
             {ABOUT_SECTION.paragraphs.map((paragraph) => (
               <Text key={paragraph}>{paragraph}</Text>

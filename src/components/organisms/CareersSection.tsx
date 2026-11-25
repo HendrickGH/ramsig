@@ -16,7 +16,9 @@ export function CareersSection({ onApply }: CareersSectionProps) {
     >
       <div className="container split-media">
         <div className="split__intro">
-          <Heading id="bolsa-title">{CAREERS_SECTION.title}</Heading>
+          <Heading id="bolsa-title" highlight={CAREERS_SECTION.highlight}>
+            {CAREERS_SECTION.title}
+          </Heading>
           <p className="careers-lead">{CAREERS_SECTION.lead}</p>
           <div className="prose-stack">
             {CAREERS_SECTION.paragraphs.map((paragraph) => (

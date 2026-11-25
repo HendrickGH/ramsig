@@ -21,6 +21,7 @@ export const CONTACT = {
   phoneHref: "tel:+525535578304",
   whatsappHref:
     "https://wa.me/525535578304?text=Hola%2C%20solicito%20una%20propuesta%20de%20seguridad%20privada%20con%20RAMSIG.",
+  whatsappLabel: "Contactar por WhatsApp",
   email: "ventas@ramsigseguridad.com",
   emailHref: "mailto:ventas@ramsigseguridad.com",
   city: "Naucalpan de Juárez, Estado de México, México",
@@ -46,6 +47,7 @@ export const HERO = {
 
 export const ABOUT_SECTION = {
   title: "Consolidación operativa bajo un solo mando",
+  highlight: "mando",
   paragraphs: [
     "Cuando la vigilancia física, el monitoreo remoto y la escolta carretera operan con proveedores aislados, los incidentes se atienden tarde.",
     "RAMSIG integra guardias en sitio, videovigilancia CCTV con inteligencia artificial y custodia de carga en ruta bajo una misma coordinación para responder desde el primer aviso.",
@@ -68,6 +70,7 @@ export interface Entry {
 
 export const SERVICES_SECTION = {
   title: "Tres líneas de control para su operación",
+  highlight: "control",
   summary:
     "Personal evaluado, supervisión directa en campo y protocolos escritos para cada punto crítico de su empresa.",
 } as const;
@@ -95,6 +98,7 @@ export const SERVICES: readonly Entry[] = [
 
 export const SECTORS_SECTION = {
   title: "Operación diseñada para su sector",
+  highlight: "sector",
   summary:
     "Cada instalación enfrenta riesgos distintos; ajustamos turnos, consignas y enlaces de reacción a su operación diaria.",
   extendedNote:
@@ -142,6 +146,7 @@ export interface Metric {
 
 export const IMPACT_SECTION = {
   title: "Nuestra presencia en la seguridad",
+  highlight: "seguridad",
   summary:
     "Cifras operativas acumuladas en plantas industriales, obras activas y rutas de distribución en México.",
 } as const;
@@ -167,6 +172,7 @@ export interface StatePresence {
 
 export const PRESENCE_SECTION = {
   title: "Presencia nacional",
+  highlight: "nacional",
   paragraphs: [
     "Operamos de forma activa en cinco entidades clave para la manufactura, la construcción y el traslado de carga.",
     "Cuando un cliente abre planta o ruta fuera de estas plazas, desplegamos supervisión y personal en cualquier estado de la República.",
@@ -186,6 +192,7 @@ export const PRESENCE_SECTION = {
 
 export const FRAMEWORK_SECTION = {
   title: "Certificaciones y respaldo normativo",
+  highlight: "normativo",
   summary:
     "Expediente corporativo preparado para licitaciones, auditorías internas y procesos de alta como proveedor.",
   items: [
@@ -212,6 +219,7 @@ export const FRAMEWORK_SECTION = {
 
 export const CAREERS_SECTION = {
   title: "Únete a nuestro equipo",
+  highlight: "equipo",
   lead: "Vacantes operativas abiertas.",
   paragraphs: [
     "Buscamos guardias intramuros, monitoristas y escoltas que valoren trabajar con reglas claras, turnos definidos y capacitación continua.",
@@ -226,6 +234,7 @@ export const CAREERS_SECTION = {
 
 export const CONTACT_SECTION = {
   title: "Solicite una evaluación operativa",
+  highlight: "operativa",
   subtitle:
     "Indique el servicio, sector y plaza donde requiere cobertura para recibir una propuesta adaptada a su operación.",
   submitCta: "Enviar solicitud de propuesta",

@@ -8,7 +8,9 @@ export function FrameworkSection() {
     <section id="marco" aria-labelledby="marco-title" className="band band--base">
       <div className="container section-flow">
         <div className="section-head">
-          <Heading id="marco-title">{FRAMEWORK_SECTION.title}</Heading>
+          <Heading id="marco-title" highlight={FRAMEWORK_SECTION.highlight}>
+            {FRAMEWORK_SECTION.title}
+          </Heading>
           <Text>{FRAMEWORK_SECTION.summary}</Text>
         </div>
 

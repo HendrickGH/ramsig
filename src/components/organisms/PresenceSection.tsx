@@ -7,7 +7,9 @@ export function PresenceSection() {
     <section id="presencia" aria-labelledby="presencia-title" className="band band--raised">
       <div className="container split-media">
         <div className="split__intro">
-          <Heading id="presencia-title">{PRESENCE_SECTION.title}</Heading>
+          <Heading id="presencia-title" highlight={PRESENCE_SECTION.highlight}>
+            {PRESENCE_SECTION.title}
+          </Heading>
           <div className="prose-stack">
             {PRESENCE_SECTION.paragraphs.map((paragraph) => (
               <Text key={paragraph}>{paragraph}</Text>

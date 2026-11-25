@@ -8,7 +8,9 @@ export function ImpactSection() {
     <section id="impacto" aria-labelledby="impacto-title" className="band band--base">
       <div className="container section-flow">
         <div className="section-head">
-          <Heading id="impacto-title">{IMPACT_SECTION.title}</Heading>
+          <Heading id="impacto-title" highlight={IMPACT_SECTION.highlight}>
+            {IMPACT_SECTION.title}
+          </Heading>
           <Text>{IMPACT_SECTION.summary}</Text>
         </div>
 
