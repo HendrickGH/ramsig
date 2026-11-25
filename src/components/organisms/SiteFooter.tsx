@@ -1,4 +1,4 @@
-import { CONTACT, NAV_LINKS } from "@/design-system/content";
+import { CONTACT, HEADER_CTA, NAV_LINKS } from "@/design-system/content";
 import { Text } from "../atoms/Text";
 
 export function SiteFooter() {
@@ -12,7 +12,7 @@ export function SiteFooter() {
             </a>
           ))}
           <a href="#contacto" className="site-nav__link">
-            Cotizar
+            {HEADER_CTA}
           </a>
         </nav>
 

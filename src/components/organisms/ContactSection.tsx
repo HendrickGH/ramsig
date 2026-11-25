@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import {
   CONTACT,
+  CONTACT_SECTION,
   REQUEST_OPTIONS,
   type RequestOptionValue,
 } from "@/design-system/content";
@@ -31,10 +32,8 @@ export function ContactSection({
     <section id="contacto" aria-labelledby="contacto-title" className="band band--base">
       <div className="container split">
         <div className="split__intro">
-          <Heading id="contacto-title">Contacto y cotización</Heading>
-          <Text>
-            Indique el servicio, sede o puesto de interés para canalizar su solicitud con el área correspondiente.
-          </Text>
+          <Heading id="contacto-title">{CONTACT_SECTION.title}</Heading>
+          <Text>{CONTACT_SECTION.subtitle}</Text>
 
           <div className="contact-details">
             <Text muted>{CONTACT.city}</Text>
@@ -63,7 +62,7 @@ export function ContactSection({
         <form className="contact-panel" onSubmit={handleSubmit}>
           {sent ? (
             <p className="confirmation" role="status">
-              Solicitud recibida. Nuestro equipo se pondrá en contacto con usted.
+              {CONTACT_SECTION.confirmation}
             </p>
           ) : null}
 
@@ -99,7 +98,7 @@ export function ContactSection({
           </FormField>
 
           <FormField id="mensaje" label="Mensaje" multiline />
-          <Button type="submit">Enviar solicitud</Button>
+          <Button type="submit">{CONTACT_SECTION.submitCta}</Button>
 
           <details className="privacy-disclosure">
             <summary className="privacy-disclosure__summary">{CONTACT.privacyTitle}</summary>

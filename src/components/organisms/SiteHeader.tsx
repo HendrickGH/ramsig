@@ -1,4 +1,4 @@
-import { NAV_LINKS } from "@/design-system/content";
+import { HEADER_CTA, NAV_LINKS } from "@/design-system/content";
 import { Button } from "../atoms/Button";
 import { Logo } from "../atoms/Logo";
 
@@ -16,7 +16,7 @@ export function SiteHeader() {
             ))}
           </nav>
           <Button href="#contacto" small>
-            Cotizar
+            {HEADER_CTA}
           </Button>
         </div>
       </div>

@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { CONTACT, SITE } from "@/design-system/content";
+import {
+  CONTACT,
+  PRESENCE_SECTION,
+  SECTORS,
+  SERVICES,
+  SITE,
+} from "@/design-system/content";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -26,7 +32,35 @@ const structuredData = {
   url: SITE.canonicalUrl,
   telephone: CONTACT.phoneDisplay,
   email: CONTACT.email,
-  areaServed: "MX",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Naucalpan de Juárez",
+    addressRegion: "Estado de México",
+    addressCountry: "MX",
+  },
+  areaServed: PRESENCE_SECTION.states.map((state) => ({
+    "@type": "State",
+    name: state.name,
+  })),
+  knowsAbout: [
+    ...SERVICES.map((service) => service.name),
+    ...SECTORS.map((sector) => `Seguridad para ${sector.name.toLowerCase()}`),
+    "CCTV con inteligencia artificial",
+    "Custodia física con protocolo CAPUFE",
+    "Custodia virtual con cuenta espejo",
+  ],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Servicios de seguridad privada corporativa",
+    itemListElement: SERVICES.map((service) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: service.name,
+        description: service.description,
+      },
+    })),
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {

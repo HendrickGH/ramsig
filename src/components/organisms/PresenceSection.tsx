@@ -5,7 +5,7 @@ import { Text } from "../atoms/Text";
 export function PresenceSection() {
   return (
     <section id="presencia" aria-labelledby="presencia-title" className="band band--raised">
-      <div className="container split">
+      <div className="container split-media">
         <div className="split__intro">
           <Heading id="presencia-title">{PRESENCE_SECTION.title}</Heading>
           <div className="prose-stack">
@@ -13,16 +13,26 @@ export function PresenceSection() {
               <Text key={paragraph}>{paragraph}</Text>
             ))}
           </div>
+
+          <ul className="presence-states">
+            {PRESENCE_SECTION.states.map((state) => (
+              <li key={state.id} className="presence-states__item">
+                <span className="presence-states__name">{state.name}</span>
+                <span className="presence-states__role">{state.role}</span>
+              </li>
+            ))}
+          </ul>
         </div>
 
-        <ul className="states-grid">
-          {PRESENCE_SECTION.states.map((state) => (
-            <li key={state.id} className="state-tile">
-              <p className="state-tile__name">{state.name}</p>
-              <Text muted>{state.role}</Text>
-            </li>
-          ))}
-        </ul>
+        <div className="presence-map-wrap">
+          <img
+            src={PRESENCE_SECTION.image.src}
+            alt={PRESENCE_SECTION.image.alt}
+            width={957}
+            height={682}
+            className="presence-map"
+          />
+        </div>
       </div>
     </section>
   );
