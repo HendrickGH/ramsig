@@ -1,5 +1,6 @@
 import { HERO } from "@/design-system/content";
 import { Heading } from "../atoms/Heading";
+import { RotatingWord } from "../atoms/RotatingWord";
 import { Text } from "../atoms/Text";
 
 export function Hero() {
@@ -17,7 +18,15 @@ export function Hero() {
       <div className="container hero">
         <div className="hero__copy">
           <Heading as="h1" size="display">
-            {HERO.title}
+            <span className="sr-only">{HERO.title}</span>
+            <span aria-hidden="true">
+              {HERO.titlePrefix}{" "}
+              <RotatingWord
+                words={HERO.sectors}
+                suffix="."
+                wordClassName="hero__highlight"
+              />
+            </span>
           </Heading>
           <Text>{HERO.lead}</Text>
         </div>
