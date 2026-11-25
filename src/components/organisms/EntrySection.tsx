@@ -9,9 +9,38 @@ export interface EntrySectionProps {
   summary?: string;
   entries: readonly Entry[];
   tone: "raised" | "base";
+  layout?: "split" | "columns";
+  footnote?: string;
 }
 
-export function EntrySection({ id, title, summary, entries, tone }: EntrySectionProps) {
+export function EntrySection({
+  id,
+  title,
+  summary,
+  entries,
+  tone,
+  layout = "split",
+  footnote,
+}: EntrySectionProps) {
+  if (layout === "columns") {
+    return (
+      <section id={id} aria-labelledby={`${id}-title`} className={`band band--${tone}`}>
+        <div className="container section-flow">
+          <div className="section-head">
+            <Heading id={`${id}-title`}>{title}</Heading>
+            {summary ? <Text>{summary}</Text> : null}
+          </div>
+          <ul className="grid-3">
+            {entries.map((entry) => (
+              <EntryItem key={entry.id} entry={entry} />
+            ))}
+          </ul>
+          {footnote ? <Text muted>{footnote}</Text> : null}
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id={id} aria-labelledby={`${id}-title`} className={`band band--${tone}`}>
       <div className="container split">

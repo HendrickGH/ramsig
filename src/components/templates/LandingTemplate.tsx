@@ -1,5 +1,11 @@
-import { SERVICES, SERVICES_SECTION } from "@/design-system/content";
+import {
+  SECTORS,
+  SECTORS_SECTION,
+  SERVICES,
+  SERVICES_SECTION,
+} from "@/design-system/content";
 import { ContactSection } from "../organisms/ContactSection";
+import { CoverageSection } from "../organisms/CoverageSection";
 import { EntrySection } from "../organisms/EntrySection";
 import { Hero } from "../organisms/Hero";
 import { SiteFooter } from "../organisms/SiteFooter";
@@ -20,7 +26,18 @@ export function LandingTemplate() {
           summary={SERVICES_SECTION.summary}
           entries={SERVICES}
           tone="raised"
+          layout="split"
         />
+        <EntrySection
+          id="sectores"
+          title={SECTORS_SECTION.title}
+          summary={SECTORS_SECTION.summary}
+          entries={SECTORS}
+          tone="base"
+          layout="columns"
+          footnote={SECTORS_SECTION.extendedNote}
+        />
+        <CoverageSection />
         <ContactSection />
       </main>
       <SiteFooter />

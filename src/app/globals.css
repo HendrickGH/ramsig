@@ -167,6 +167,17 @@ img {
   clip-path: none;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 /* Atoms */
 .logo-plate {
   display: inline-flex;
@@ -279,7 +290,38 @@ textarea.field__control {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 1.5rem;
+}
+
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.site-nav {
+  display: none;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+@media (min-width: 52rem) {
+  .site-nav {
+    display: flex;
+  }
+}
+
+.site-nav__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 0.9375rem;
+  color: var(--ink-secondary);
+  transition: color 160ms ease;
+}
+
+.site-nav__link:hover {
+  color: var(--accent-gold);
 }
 
 /* Hero */
@@ -348,6 +390,23 @@ textarea.field__control {
   color: var(--ink-primary);
 }
 
+.hero__highlight {
+  color: var(--hero-highlight);
+}
+
+.rotating-word-clip {
+  display: inline-block;
+  vertical-align: baseline;
+  overflow: hidden;
+  padding-block: 0.14em;
+  margin-block: -0.14em;
+}
+
+.rotating-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
 /* Lists */
 .split {
   display: grid;
@@ -375,10 +434,94 @@ textarea.field__control {
 .entry {
   display: grid;
   gap: 0.5rem;
+  align-content: start;
 }
 
 .entry .text {
   color: var(--ink-muted);
+}
+
+.section-flow {
+  display: grid;
+  gap: clamp(2.5rem, 5vw, 4rem);
+}
+
+.section-head {
+  display: grid;
+  gap: 0.875rem;
+  max-width: 42rem;
+}
+
+.grid-3 {
+  display: grid;
+  gap: clamp(2rem, 4vw, 3rem);
+}
+
+@media (min-width: 52rem) {
+  .grid-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2.5rem;
+  }
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem 1.5rem;
+}
+
+@media (min-width: 52rem) {
+  .metrics-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 2.5rem;
+  }
+}
+
+.metric {
+  display: grid;
+  gap: 0.375rem;
+  align-content: start;
+}
+
+.metric__value {
+  font-family: var(--font-serif);
+  font-size: clamp(2.25rem, 4vw, 3.25rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--accent-gold);
+}
+
+.split-even {
+  display: grid;
+  gap: 2.5rem;
+}
+
+@media (min-width: 52rem) {
+  .split-even {
+    grid-template-columns: 1fr 1.6fr;
+    gap: 4rem;
+  }
+}
+
+.subblock {
+  display: grid;
+  gap: 1.25rem;
+  align-content: start;
+}
+
+.plain-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.plain-list__item {
+  font-size: 1rem;
+  color: var(--ink-secondary);
+}
+
+.stack-compact {
+  display: grid;
+  gap: 1.5rem;
 }
 
 /* Contact */
@@ -390,14 +533,39 @@ textarea.field__control {
   background-color: var(--surface-2);
 }
 
+.form-row {
+  display: grid;
+  gap: 1.25rem;
+}
+
+@media (min-width: 40rem) {
+  .form-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 .contact-details {
   display: grid;
   gap: 0.25rem;
-  margin-top: 1.5rem;
+  margin-top: 0.75rem;
 }
 
-.contact-details a {
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   color: var(--accent-gold);
+  transition: color 160ms ease;
+}
+
+.contact-link:hover {
+  color: var(--accent-gold-hover);
+}
+
+.contact-hours {
+  display: grid;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
 }
 
 .confirmation {
@@ -407,10 +575,50 @@ textarea.field__control {
   color: var(--ink-primary);
 }
 
+.privacy-disclosure {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.privacy-disclosure__summary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 0.9375rem;
+  color: var(--ink-secondary);
+  cursor: pointer;
+  list-style: none;
+}
+
+.privacy-disclosure__summary::-webkit-details-marker {
+  display: none;
+}
+
+.privacy-disclosure__summary:hover {
+  color: var(--accent-gold);
+}
+
+.privacy-disclosure__body {
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--ink-muted);
+}
+
 /* Footer */
 .site-footer {
   background-color: var(--hero-bg);
-  padding-block: 2.5rem;
+  padding-block: 3rem;
+}
+
+.site-footer__stack {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.site-footer__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
 }
 
 .site-footer__row {
@@ -418,5 +626,5 @@ textarea.field__control {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 1.25rem;
+  gap: 1rem;
 }

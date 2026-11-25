@@ -1,3 +1,4 @@
+import { NAV_LINKS } from "@/design-system/content";
 import { Button } from "../atoms/Button";
 import { Logo } from "../atoms/Logo";
 
@@ -6,9 +7,18 @@ export function SiteHeader() {
     <header className="site-header">
       <div className="container site-header__row">
         <Logo href="#inicio" />
-        <Button href="#contacto" small>
-          Cotizar
-        </Button>
+        <div className="site-header__actions">
+          <nav aria-label="Navegación principal" className="site-nav">
+            {NAV_LINKS.map((link) => (
+              <a key={link.href} href={link.href} className="site-nav__link">
+                {link.label}
+              </a>
+            ))}
+          </nav>
+          <Button href="#contacto" small>
+            Cotizar
+          </Button>
+        </div>
       </div>
     </header>
   );
