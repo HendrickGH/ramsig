@@ -16,7 +16,7 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contacto" aria-labelledby="contacto-title" className="band band--raised">
+    <section id="contacto" aria-labelledby="contacto-title" className="band band--base">
       <div className="container split">
         <div>
           <Heading id="contacto-title">Cuéntenos qué necesita proteger.</Heading>
