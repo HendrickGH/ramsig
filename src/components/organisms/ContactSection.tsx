@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
+import gsap from "gsap";
 import {
   CONTACT,
   CONTACT_SECTION,
@@ -22,6 +23,35 @@ export function ContactSection({
   onSelectRequest,
 }: ContactSectionProps) {
   const [sent, setSent] = useState(false);
+  const confirmationRef = useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    const el = confirmationRef.current;
+    if (!sent || !el) return;
+
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) {
+      gsap.fromTo(
+        el,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.2, ease: "power2.out", clearProps: "opacity" },
+      );
+      return;
+    }
+
+    gsap.fromTo(
+      el,
+      { y: -6, opacity: 0, scale: 0.98 },
+      {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        duration: 0.26,
+        ease: "power3.out",
+        clearProps: "transform,opacity",
+      },
+    );
+  }, [sent]);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -32,7 +62,9 @@ export function ContactSection({
     <section id="contacto" aria-labelledby="contacto-title" className="band band--base">
       <div className="container split">
         <div className="split__intro">
-          <Heading id="contacto-title">{CONTACT_SECTION.title}</Heading>
+          <Heading id="contacto-title" highlight={CONTACT_SECTION.highlight}>
+            {CONTACT_SECTION.title}
+          </Heading>
           <Text>{CONTACT_SECTION.subtitle}</Text>
 
           <div className="contact-details">
@@ -61,7 +93,7 @@ export function ContactSection({
 
         <form className="contact-panel" onSubmit={handleSubmit}>
           {sent ? (
-            <p className="confirmation" role="status">
+            <p ref={confirmationRef} className="confirmation" role="status">
               {CONTACT_SECTION.confirmation}
             </p>
           ) : null}

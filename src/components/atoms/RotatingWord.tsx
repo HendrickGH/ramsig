@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import gsap from "gsap";
 
 export interface RotatingWordProps {
   words: readonly string[];
@@ -11,8 +11,9 @@ export interface RotatingWordProps {
 }
 
 /**
- * Cycles through a list of words at a fixed interval with a vertical reveal,
- * falling back to an instant swap when reduced motion is preferred.
+ * Cycles through a list of words at a fixed interval with a GSAP vertical
+ * blur-masked reveal, falling back to an opacity-only swap when reduced motion
+ * is preferred.
  */
 export function RotatingWord({
   words,
@@ -21,38 +22,97 @@ export function RotatingWord({
   wordClassName,
 }: RotatingWordProps) {
   const [index, setIndex] = useState(0);
-  const prefersReducedMotion = useReducedMotion();
+  const wordRef = useRef<HTMLSpanElement>(null);
+  const pendingEnterRef = useRef(false);
 
   useEffect(() => {
     if (words.length <= 1) return;
 
     const timer = window.setInterval(() => {
-      setIndex((current) => (current + 1) % words.length);
+      const el = wordRef.current;
+      if (!el) {
+        setIndex((current) => (current + 1) % words.length);
+        return;
+      }
+
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      gsap.killTweensOf(el);
+
+      if (reduced) {
+        gsap.to(el, {
+          opacity: 0,
+          duration: 0.14,
+          ease: "power2.out",
+          onComplete: () => {
+            pendingEnterRef.current = true;
+            setIndex((current) => (current + 1) % words.length);
+          },
+        });
+        return;
+      }
+
+      gsap.to(el, {
+        y: "-0.32em",
+        opacity: 0,
+        filter: "blur(2px)",
+        duration: 0.18,
+        ease: "power3.out",
+        onComplete: () => {
+          pendingEnterRef.current = true;
+          setIndex((current) => (current + 1) % words.length);
+        },
+      });
     }, intervalMs);
 
-    return () => window.clearInterval(timer);
+    return () => {
+      window.clearInterval(timer);
+      if (wordRef.current) {
+        gsap.killTweensOf(wordRef.current);
+      }
+    };
   }, [words.length, intervalMs]);
+
+  useLayoutEffect(() => {
+    if (!pendingEnterRef.current) return;
+    pendingEnterRef.current = false;
+
+    const el = wordRef.current;
+    if (!el) return;
+
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    gsap.killTweensOf(el);
+
+    if (reduced) {
+      gsap.fromTo(
+        el,
+        { opacity: 0, y: 0, filter: "none" },
+        { opacity: 1, duration: 0.18, ease: "power2.out", clearProps: "opacity" },
+      );
+      return;
+    }
+
+    gsap.fromTo(
+      el,
+      { y: "0.35em", opacity: 0, filter: "blur(2px)" },
+      {
+        y: 0,
+        opacity: 1,
+        filter: "blur(0px)",
+        duration: 0.26,
+        ease: "power3.out",
+        clearProps: "transform,filter,opacity",
+      },
+    );
+  }, [index]);
 
   const activeWord = words[index] ?? "";
 
   return (
     <span className="rotating-word-clip">
-      <AnimatePresence mode="wait" initial={false}>
-        <motion.span
-          key={activeWord}
-          className="rotating-word"
-          initial={prefersReducedMotion ? false : { opacity: 0, y: "0.35em" }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: "-0.35em" }}
-          transition={{
-            duration: prefersReducedMotion ? 0 : 0.28,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-        >
-          <span className={wordClassName}>{activeWord}</span>
-          {suffix}
-        </motion.span>
-      </AnimatePresence>
+      <span ref={wordRef} className="rotating-word">
+        <span className={wordClassName}>{activeWord}</span>
+        {suffix}
+      </span>
     </span>
   );
 }
