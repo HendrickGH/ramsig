@@ -42,7 +42,7 @@ export function useLandingAnimations(rootRef: RefObject<HTMLElement | null>) {
 
     mm.add("(prefers-reduced-motion: no-preference)", () => {
       // Header entrance
-      gsap.from(".site-header .logo-plate, .site-header .site-nav__link, .site-header .btn", {
+      gsap.from(".site-header .logo-plate, .site-header .site-nav__link, .site-header .btn, .site-header .site-menu-toggle", {
         y: -8,
         opacity: 0,
         duration: 0.42,

@@ -1,8 +1,30 @@
 export const SITE = {
   name: "RAMSIG Seguridad Privada",
+  shortName: "RAMSIG",
   title: "RAMSIG Seguridad Privada | Guardias, monitoreo con IA y custodias en México",
   description:
-    "Guardias intramuros, monitoreo 24/7 con CCTV e inteligencia artificial y custodias de mercancía para industria, obras de construcción y parques logísticos en México.",
+    "Guardias intramuros, monitoreo 24/7 con CCTV e inteligencia artificial y custodias de mercancía para industria, obra y parques logísticos en cinco estados de México.",
+  socialTitle: "RAMSIG Seguridad Privada | Protección industrial, obra y logística",
+  socialDescription:
+    "Consolidación operativa bajo un solo mando: guardias intramuros, monitoreo 24/7 con CCTV e IA y custodias CAPUFE/GPS en CDMX, EdoMex, Querétaro, Jalisco y BCS.",
+  ogImage: "/images/og-hero.jpg",
+  ogImageAlt:
+    "RAMSIG Seguridad Privada — Guardias intramuros, monitoreo 24/7 con CCTV e IA y custodias de mercancía en México",
+  keywords: [
+    "seguridad privada México",
+    "guardias intramuros",
+    "monitoreo 24/7 CCTV con inteligencia artificial",
+    "custodia de mercancía",
+    "custodia virtual GPS cuenta espejo",
+    "custodia física protocolo CAPUFE",
+    "seguridad industrial",
+    "seguridad para obras de construcción",
+    "seguridad en parques logísticos",
+    "empresa de seguridad privada REPSE SSPC",
+    "seguridad privada Naucalpan Estado de México",
+    "seguridad privada CDMX Querétaro Jalisco BCS",
+  ],
+  locale: "es_MX",
   canonicalUrl: "https://www.ramsigseguridad.com/",
 } as const;
 
@@ -15,6 +37,12 @@ export const NAV_LINKS = [
 ] as const;
 
 export const HEADER_CTA = "Solicitar propuesta";
+
+export const HEADER_MENU = {
+  openLabel: "Abrir menú de navegación",
+  closeLabel: "Cerrar menú de navegación",
+  mobileNavLabel: "Navegación móvil",
+} as const;
 
 export const CONTACT = {
   phoneDisplay: "+52 55 3557 8304",
