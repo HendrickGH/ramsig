@@ -297,6 +297,8 @@ textarea.field__control {
 
 /* Header */
 .site-header {
+  position: relative;
+  z-index: 60;
   background-color: var(--hero-bg);
   padding-block: 1.25rem;
 }
@@ -377,7 +379,11 @@ textarea.field__control {
 }
 
 .mobile-nav-wrap {
-  margin-top: 1rem;
+  position: absolute;
+  top: calc(100% - 0.25rem);
+  left: 0;
+  right: 0;
+  z-index: 60;
 }
 
 @media (min-width: 52rem) {
