@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   SECTORS,
   SECTORS_SECTION,
@@ -8,6 +8,8 @@ import {
   SERVICES_SECTION,
   type RequestOptionValue,
 } from "@/design-system/content";
+import { useLandingAnimations } from "@/design-system/useLandingAnimations";
+import { WhatsAppButton } from "../atoms/WhatsAppButton";
 import { AboutSection } from "../organisms/AboutSection";
 import { CareersSection } from "../organisms/CareersSection";
 import { ContactSection } from "../organisms/ContactSection";
@@ -21,6 +23,9 @@ import { SiteHeader } from "../organisms/SiteHeader";
 
 export function LandingTemplate() {
   const [selectedRequest, setSelectedRequest] = useState<RequestOptionValue>("guardias");
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  useLandingAnimations(rootRef);
 
   const handleApply = () => {
     setSelectedRequest("bolsa");
@@ -31,7 +36,7 @@ export function LandingTemplate() {
   };
 
   return (
-    <>
+    <div ref={rootRef}>
       <a href="#principal" className="skip-link">
         Saltar al contenido
       </a>
@@ -42,6 +47,7 @@ export function LandingTemplate() {
         <EntrySection
           id="servicios"
           title={SERVICES_SECTION.title}
+          titleHighlight={SERVICES_SECTION.highlight}
           summary={SERVICES_SECTION.summary}
           entries={SERVICES}
           tone="base"
@@ -50,6 +56,7 @@ export function LandingTemplate() {
         <EntrySection
           id="sectores"
           title={SECTORS_SECTION.title}
+          titleHighlight={SECTORS_SECTION.highlight}
           summary={SECTORS_SECTION.summary}
           entries={SECTORS}
           tone="raised"
@@ -66,6 +73,7 @@ export function LandingTemplate() {
         />
       </main>
       <SiteFooter />
-    </>
+      <WhatsAppButton />
+    </div>
   );
 }

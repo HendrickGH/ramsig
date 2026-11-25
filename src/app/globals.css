@@ -39,6 +39,10 @@
   --radius-sm: 12px;
   --radius-md: 18px;
   --radius-pill: 999px;
+
+  /* Emil Kowalski Motion Curves */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 *,
@@ -184,6 +188,11 @@ img {
   padding: 0.5rem 0.75rem;
   border-radius: var(--radius-sm);
   background-color: var(--surface-inverse);
+  transition: transform 160ms var(--ease-out);
+}
+
+a:active .logo-plate {
+  transform: scale(0.97);
 }
 
 .heading {
@@ -233,11 +242,17 @@ img {
   font-size: 1rem;
   background-color: var(--accent-gold);
   color: var(--ink-on-gold);
-  transition: background-color 160ms ease;
+  transition: transform 160ms var(--ease-out), background-color 160ms ease;
 }
 
-.btn:hover {
-  background-color: var(--accent-gold-hover);
+.btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover:not(:disabled) {
+    background-color: var(--accent-gold-hover);
+  }
 }
 
 .btn--sm {
@@ -318,11 +333,17 @@ textarea.field__control {
   white-space: nowrap;
   font-size: 0.9375rem;
   color: var(--ink-secondary);
-  transition: color 160ms ease;
+  transition: color 160ms ease, transform 160ms var(--ease-out);
 }
 
-.site-nav__link:hover {
-  color: var(--accent-gold);
+.site-nav__link:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .site-nav__link:hover {
+    color: var(--accent-gold);
+  }
 }
 
 /* Hero */
@@ -391,7 +412,8 @@ textarea.field__control {
   color: var(--ink-primary);
 }
 
-.hero__highlight {
+.hero__highlight,
+.heading__highlight {
   color: var(--hero-highlight);
 }
 
@@ -465,6 +487,14 @@ textarea.field__control {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 280ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .entry:hover .media-frame__img,
+  .media-frame--split:hover .media-frame__img {
+    transform: scale(1.025);
+  }
 }
 
 .stack {
@@ -531,6 +561,7 @@ textarea.field__control {
 
 .metric__value {
   font-family: var(--font-serif);
+  font-variant-numeric: tabular-nums;
   font-size: clamp(2.25rem, 4vw, 3.25rem);
   line-height: 1.05;
   letter-spacing: -0.02em;
@@ -552,6 +583,14 @@ textarea.field__control {
   padding: 0.75rem 1rem;
   border-radius: var(--radius-xs);
   background-color: var(--surface-2);
+  transition: background-color 160ms ease, transform 200ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .presence-states__item:hover {
+    background-color: var(--surface-3);
+    transform: translateX(3px);
+  }
 }
 
 .presence-states__name {
@@ -618,11 +657,17 @@ textarea.field__control {
   align-items: center;
   min-height: 44px;
   color: var(--accent-gold);
-  transition: color 160ms ease;
+  transition: color 160ms ease, transform 160ms var(--ease-out);
 }
 
-.contact-link:hover {
-  color: var(--accent-gold-hover);
+.contact-link:active {
+  transform: scale(0.98);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .contact-link:hover {
+    color: var(--accent-gold-hover);
+  }
 }
 
 .contact-hours {
@@ -657,8 +702,10 @@ textarea.field__control {
   display: none;
 }
 
-.privacy-disclosure__summary:hover {
-  color: var(--accent-gold);
+@media (hover: hover) and (pointer: fine) {
+  .privacy-disclosure__summary:hover {
+    color: var(--accent-gold);
+  }
 }
 
 .privacy-disclosure__body {
@@ -690,4 +737,38 @@ textarea.field__control {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+}
+
+/* Floating WhatsApp CTA */
+.whatsapp-float {
+  position: fixed;
+  right: max(clamp(1.25rem, 3vw, 2rem), env(safe-area-inset-right));
+  bottom: max(clamp(1.25rem, 3vw, 2rem), env(safe-area-inset-bottom));
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: var(--radius-pill);
+  background-color: var(--accent-gold);
+  color: var(--ink-on-gold);
+  transition: transform 160ms var(--ease-out), background-color 160ms ease;
+}
+
+.whatsapp-float:active {
+  transform: scale(0.95);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .whatsapp-float:hover {
+    background-color: var(--accent-gold-hover);
+    transform: translateY(-2px);
+  }
+}
+
+.whatsapp-float__icon {
+  display: block;
+  width: 1.75rem;
+  height: 1.75rem;
 }
